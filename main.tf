@@ -300,33 +300,6 @@ resource "coder_app" "gateway" {
   external     = true
   order        = var.order
   url = join("", [
-    "jetbrains-gateway://connect#type=coder&workspace=",
-    data.coder_workspace.me.name,
-    "&owner=",
-    data.coder_workspace_owner.me.name,
-    "&folder=",
-    var.folder,
-    "&url=",
-    data.coder_workspace.me.access_url,
-    "&token=",
-    "$SESSION_TOKEN",
-    "&ide_product_code=",
-    data.coder_parameter.jetbrains_ide.value,
-    "&ide_build_number=",
-    local.build_number,
-    "&ide_download_link=",
-    local.download_link,
-  ])
-}
-
-resource "coder_app" "gateway" {
-  agent_id     = var.agent_id
-  slug         = var.slug
-  display_name = local.display_name
-  icon         = local.icon
-  external     = true
-  order        = var.order
-  url = join("", [
     "jetbrains-gateway://connect#type=coder",
     "&workspace=", data.coder_workspace.me.name,
     "&owner=", data.coder_workspace_owner.me.name,
